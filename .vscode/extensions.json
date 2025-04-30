@@ -1,0 +1,8 @@
+{
+  "recommendations": [
+    "davidanson.vscode-markdownlint",
+    "editorconfig.editorconfig",
+    "me-dutour-mathieu.vscode-github-actions",
+    "usernamehw.errorlens"
+  ]
+}
