@@ -12,45 +12,86 @@
         keymap {
                 compatible = "zmk,keymap";
 
-                default_layer {
-// -----------------------------------------------------------------------------------------
-// |  TAB |  Q  |  W  |  E  |  R  |  T  |   |  Y  |  U   |  I  |  O  |  P  | BSPC |
-// | CTRL |  A  |  S  |  D  |  F  |  G  |   |  H  |  J   |  K  |  L  |  ;  |  '   |
-// | SHFT |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M   |  ,  |  .  |  /  | ESC  |
-//                    | GUI | LWR | SPC |   | ENT | RSE  | ALT |
+                qwerty_layer {
+// -------------------------------------------------------------------------------------------------------------------------------------
+// | `         |  Q        |  W       |  E        |  R        |  T  |=|  Y  |  U         |  I         |  O        |  P          |  -   |
+// | ESC       |  A        |  S       |  D        |  F        |  G  |=|  H  |  J         |  K         |  L        |  ;          |  \   |
+//   > num_l      LGUI        LALT       LCTR        LSHFT           =         RSHFT        RCTR         RALT        RGUI
+// | GUI       |  Z        |  X       |  C        |  V        |  B  |=|  N  |  M         |  ,         |  .        |  /          |  =   |
+//   > nav_l                                                                                                                      > sys_l
+//                                    |  CAPS     | SPC       | TAB |=| RET | BSPC       |  none      |
+//
                         bindings = <
-   &kp TAB   &kp Q &kp W &kp E &kp R &kp T   &kp Y &kp U  &kp I     &kp O   &kp P    &kp BSPC
-   &kp LCTRL &kp A &kp S &kp D &kp F &kp G   &kp H &kp J  &kp K     &kp L   &kp SEMI &kp SQT
-   &kp LSHFT &kp Z &kp X &kp C &kp V &kp B   &kp N &kp M  &kp COMMA &kp DOT &kp FSLH &kp ESC
-                  &kp LGUI &mo 1 &kp SPACE   &kp RET &mo 2 &kp RALT
-                        >;
-                };
-                lower_layer {
-// -----------------------------------------------------------------------------------------
-// |  TAB |  1  |  2  |  3  |  4  |  5  |   |  6  |  7  |  8  |  9  |  0  | BSPC |
-// | BTCLR| BT1 | BT2 | BT3 | BT4 | BT5 |   | LFT | DWN |  UP | RGT |     |      |
-// | SHFT |     |     |     |     |     |   |     |     |     |     |     |      |
-//                    | GUI |     | SPC |   | ENT |     | ALT |
-                        bindings = <
-   &kp TAB    &kp N1       &kp N2       &kp N3       &kp N4       &kp N5         &kp N6   &kp N7   &kp N8 &kp N9    &kp N0 &kp BSPC
-   &bt BT_CLR &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4   &kp LEFT &kp DOWN &kp UP &kp RIGHT &trans &trans
-   &kp LSHFT  &trans       &trans       &trans       &trans       &trans         &trans   &trans   &trans &trans    &trans &trans
-                                    &kp LGUI     &trans       &kp SPACE      &kp RET  &trans   &kp RALT
+   &kp GRAVE   &kp Q       &kp W      &kp E       &kp R       &kp T   &kp Y &kp U        &kp I        &kp O       &kp P         &kp MINUS
+   &lt 1 ESC   &mt LGUI A  &mt LALT S &mt LCTRL D &mt LSHFT F &kp G   &kp H &mt RSHFT J  &mt RCTRL K  &mt RALT L  &mt RGUI SEMI &kp BSLH
+   &lt 2 LGUI  &kp Z       &kp X      &kp C       &kp V       &kp B   &kp N &kp M        &kp COMMA    &kp DOT     &kp FSLH      &lt 4 EQUAL
+                                         &kp CAPS &lt 3 SPACE &kp TAB &kp RET &kp BSPC &none
                         >;
                 };
 
-                raise_layer {
-// -----------------------------------------------------------------------------------------
-// |  TAB |  !  |  @  |  #  |  $  |  %  |   |  ^  |  &  |  *  |  (  |  )  | BSPC |
-// | CTRL |     |     |     |     |     |   |  -  |  =  |  [  |  ]  |  \  |  `   |
-// | SHFT |     |     |     |     |     |   |  _  |  +  |  {  |  }  | "|" |  ~   |
-//                    | GUI |     | SPC |   | ENT |     | ALT |
+                num_layer {   // Layer 1
+// -----------------------------------------------------------------------------------------------------------------------------------------
+// |           |           |          |           |           |  %     |=| N7   |  N8        |  N9        |  MINUS    |  AT         |      |
+// |           |           |          |           |           |        |=| N4   |  N5        |  N6        |  PLUS     |  STAR       | BSPC |
+//   > num_l      LGUI        LALT       LCTR        LSHFT              =
+// |           |           |          |           |           |        |=| N1   |  N2        |  N3        |  .        |  /          |  =   |
+//                                    |  &trans   | &trans    | TAB    |=| RET  |  N0        |  none      |
+//
                         bindings = <
-   &kp  TAB  &kp EXCL &kp AT &kp HASH &kp DLLR &kp PRCNT   &kp CARET &kp AMPS  &kp ASTRK &kp LPAR &kp RPAR &kp BSPC
-   &kp LCTRL &trans   &trans &trans   &trans   &trans      &kp MINUS &kp EQUAL &kp LBKT  &kp RBKT &kp BSLH &kp GRAVE
-   &kp LSHFT &trans   &trans &trans   &trans   &trans      &kp UNDER &kp PLUS  &kp LBRC  &kp RBRC &kp PIPE &kp TILDE
-                             &kp LGUI &trans   &kp SPACE   &kp RET   &trans    &kp RALT
+   &none       &none       &none      &none       &none       &kp PRCNT  &kp N7 &kp N8       &kp N9       &kp MINUS   &kp AT        &none
+   &trans      &trans      &trans     &trans      &trans      &none      &kp N4 &kp N5       &kp N6       &kp PLUS    &kp STAR      &kp BSPC
+   &none       &none       &none      &none       &none       &none      &kp N1 &kp N2       &kp N3       &kp DOT     &kp FSLH      &kp EQUAL
+                                         &trans   &trans      &trans     &trans   &kp N0     &trans
                         >;
                 };
+
+                symFn_layer {   // Layer 2
+// -----------------------------------------------------------------------------------------------------------------------------------------
+// |           |           |          |           |           |  %     |=| F7   |  F8        |  F9        |  F12      |             |      |
+// |           |           |          |           |           |        |=| F4   |  F5        |  F6        |  F11      |             |      |
+//                LGUI        LALT       LCTR        LSHFT              =
+// | > symFn_l |           |          |           |           |        |=| F1   |  F2        |  F3        |  F10      |             |      |
+//                                    |  &trans   | &trans    | TAB    |=| RET  |  none      |  none      |
+//
+                        bindings = <
+   &none       &none       &none      &none       &none       &none      &kp F7 &kp F8       &kp F9       &kp F12     &none         &none
+   &none       &trans      &trans     &trans      &trans      &none      &kp F4 &kp F5       &kp F6       &kp F11     &none         &none
+   &trans      &none       &none      &none       &none       &none      &kp F1 &kp F2       &kp F3       &kp F10     &none         &none
+                                         &trans   &trans      &trans     &trans   &trans   &trans
+                        >;
+                };
+
+                nav_layer {   // layer 3
+// -----------------------------------------------------------------------------------------------------------------------------------------
+// |           |           |          |           |           |        |=| HOME |  PgDn      |  PgUp      | END       |             |      |
+// |           |           |          |           |           |        |=| LEFT |  DOWN      |  UP        | RIGHT     |             |      |
+//                LGUI        LALT       LCTR        LSHFT              =
+// |           |           |          |           |           |        |=|      |            |            |           |             |      |
+//                                    |  &trans   | > nav_l   |        |=|      |            |  none      |
+//
+                        bindings = <
+   &none       &none       &none      &none       &none       &none      &kp HOME &kp PG_DN  &kp PG_UP    &kp END     &none         &none
+   &trans      &trans      &trans     &trans      &trans      &none      &kp LEFT &kp DOWN   &kp UP       &kp RIGHT   &none         &none
+   &none       &none       &none      &none       &none       &none      &none    &none      &none        &none       &none         &none
+                                         &trans   &trans      &trans     &trans  &trans   &trans
+                        >;
+                };
+
+                sys_layer {   // layer 4
+// -----------------------------------------------------------------------------------------------------------------------------------------
+// |           |           | MUTE     | VOL_DN    | VOL_UP    |        |=|      |            |            |           |             | RESET|
+// |           | PREV      | NEXT     | STOP      | PLAY      |        |=|      |            |            |           |             |      |
+// | BTCLR     | BT1       | BT2      | BT3       | BT4       | BT5    |=|      |            |            |           |             |      |
+//                                                                                                                                    > sys_l
+//                                    |  &trans   | &trans    |        |=|      |            |  none      |
+//
+                        bindings = <
+   &none       &none       &kp C_MUTE &kp C_VOL_DN &kp C_VOL_UP &none    &none    &none      &none        &none       &none         &bootloader
+   &none       &kp C_PREV  &kp C_NEXT &kp C_STOP  &kp C_PLAY  &none      &none    &none      &none        &none       &none         &none
+   &BT_CLR     &BT_SEL 0   &BT_SEL 1  &BT_SEL 2   &BT_SEL 3   &BT_SEL 4  &none    &none      &none        &none       &none         &trans
+                                         &trans   &trans      &trans     &trans  &trans   &trans
+                        >;
+                };
+
         };
 };
