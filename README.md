@@ -6,3 +6,8 @@
 
 - [Keymaps](https://zmk.dev/docs/keymaps)
 - [Configuration](https://zmk.dev/docs/config)
+
+## Keymap
+
+![keymap](assets/corne-keymap.svg)
+rendered with [@caksoylar's amazing keymap visualizer](https://keymap-drawer.streamlit.app)
